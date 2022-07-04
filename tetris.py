@@ -515,6 +515,12 @@ while running:
                 if event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     if(checkBottom() == False and checkOtherBlocks() == False):
                         moveActiveBlocksDown()
+                
+                if event.key == pygame.K_m and pygame.mixer.music.get_busy():
+                    pygame.mixer.music.pause()
+                elif event.key == pygame.K_m and not pygame.mixer.music.get_busy():
+                    pygame.mixer.music.unpause()
+
                 if event.key == pygame.K_p and not over:
                     if(adder == 1):
                         adder = 0
