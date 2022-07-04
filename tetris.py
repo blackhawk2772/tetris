@@ -95,8 +95,10 @@ def spawn():
     nextShape = random.randrange(0,7)
 
 def drawGrid():
+    #draw vertical grid
     for i in range(21):              # x         y        width  height
         pygame.draw.rect(screen,GRAY,[717, 48 + 48*i, 1920/3-48*3-11, 5],1)
+    #draw horizontal grid
     for i in range(11):
         pygame.draw.rect(screen,GRAY,[717 + 48*i, 48, 5, 48*20],1)    
 
@@ -313,6 +315,7 @@ def checkSafeMoveR():
 
 def safeRotate():
     global rotation
+    #define block variables
     bx1=activeBlocks[0].x
     by1=activeBlocks[0].y
     bx2=activeBlocks[1].x
@@ -325,7 +328,8 @@ def safeRotate():
     rotate()
     for blok in activeBlocks:
         for bloque in staticBlocks:
-            if (bloque is not None and ((blok.x == bloque.x and blok.y == bloque.y) or blok.x == 722-48 or blok.x == 1154+48)):
+            #check if every block in active blocks is not intersecting with a block in staticBlocks and is not outside map boundaries
+            if (bloque is not None and ((blok.x == bloque.x and blok.y == bloque.y) or blok.x == 722-48 or blok.x == 1154+48 or blok.y > 1008-48)):
                 activeBlocks[0].x=bx1
                 activeBlocks[0].y=by1
                 activeBlocks[1].x=bx2
@@ -508,7 +512,6 @@ while running:
                     direction = 1
                 if event.key == pygame.K_w or event.key == pygame.K_UP and adder != 0:
                     safeRotate()
-                    #rotate()
                 if event.key == pygame.K_SPACE:
                     moveToShade(shadeBlocks)
                     counter = limit

@@ -1,0 +1,1 @@
+if part of the grid has at its same height some active blocks, make it the same color than the falling blocks
